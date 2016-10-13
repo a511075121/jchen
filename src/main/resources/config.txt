@@ -1,0 +1,3 @@
+jdbc.url=jdbc:mysql://localhost:3306/goods_merchandise?characterEncoding=utf8&amp;zeroDateTimeBehavior=convertToNull
+jdbc.user=chenjie
+jdbc.pwd=.a654321

@@ -33,6 +33,30 @@ public abstract class BaseSysMenu<M extends BaseSysMenu<M>> extends Model<M> imp
 		return get("p_id");
 	}
 
+	public void setIcon(java.lang.String icon) {
+		set("icon", icon);
+	}
+
+	public java.lang.String getIcon() {
+		return get("icon");
+	}
+
+	public void setControllerId(java.lang.Integer controllerId) {
+		set("controller_id", controllerId);
+	}
+
+	public java.lang.Integer getControllerId() {
+		return get("controller_id");
+	}
+
+	public void setSort(java.lang.Integer sort) {
+		set("sort", sort);
+	}
+
+	public java.lang.Integer getSort() {
+		return get("sort");
+	}
+
 	public void setNote(java.lang.String note) {
 		set("note", note);
 	}

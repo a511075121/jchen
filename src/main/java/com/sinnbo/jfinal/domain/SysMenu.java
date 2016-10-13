@@ -11,8 +11,17 @@ import com.sinnbo.jfinal.domain.base.BaseSysMenu;
 @SuppressWarnings("serial")
 public class SysMenu extends BaseSysMenu<SysMenu> {
 	public static final SysMenu dao = new SysMenu();
+	private final Integer rootMenuId = -1;
 	
 	public List<SysMenu> getAll() {
 	  return find("select * from i_sys_menu where data_status!=?", DataStatus.DELETED.getValue());
+	}
+	
+	public List<SysMenu> getByPId(Integer pId) {
+	  return find("select * from i_sys_menu where data_status=? and p_id=? order by sort", DataStatus.ENABLED.getValue(), pId);
+	}
+	
+	public List<SysMenu> getRootMenu() {
+	  return find("select * from i_sys_menu where data_status=? and p_id=? order by sort", DataStatus.ENABLED.getValue(), rootMenuId);
 	}
 }

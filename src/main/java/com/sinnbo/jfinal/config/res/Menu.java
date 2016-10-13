@@ -2,14 +2,12 @@ package com.sinnbo.jfinal.config.res;
 
 import java.util.List;
 
-import com.google.common.collect.Lists;
-
-public class MenuAndParentMenu {
+public class Menu {
   private Integer menuId;
   private String controller;
   private String name;
   private String icon;
-  private List<MenuAndParentMenu> list = Lists.newArrayList();
+  private List<Menu> list;
   public Integer getMenuId() {
     return menuId;
   }
@@ -28,10 +26,10 @@ public class MenuAndParentMenu {
   public void setIcon(String icon) {
     this.icon = icon;
   }
-  public List<MenuAndParentMenu> getList() {
+  public List<Menu> getList() {
     return list;
   }
-  public void setList(List<MenuAndParentMenu> list) {
+  public void setList(List<Menu> list) {
     this.list = list;
   }
   public String getName() {

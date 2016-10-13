@@ -41,4 +41,12 @@ public class SysMenuService extends BaseService<SysMenu> {
   public List<SysMenu> getAll() {
     return SysMenu.dao.getAll();
   }
+  
+  public List<SysMenu> getByPid(Integer pId) {
+    return SysMenu.dao.getByPId(pId);
+  }
+  
+  public List<SysMenu> getRootMenu() {
+    return SysMenu.dao.getRootMenu();
+  }
 }

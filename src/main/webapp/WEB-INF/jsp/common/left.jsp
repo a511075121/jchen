@@ -1,6 +1,27 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <ul class="list-unstyled side-menu">
-	<li class="active"><a class="sa-side-home" href="#">
+	<c:forEach var="rootMenus" items="${_menuList }">
+		<c:choose>
+			<c:when test="${null == rootMenus.list}">
+				<li><a class="${rootMenus.icon }" href="${rootMenus.controller }">
+				<span class="menu-item">${rootMenus.name }</span></a>
+				</li>
+			</c:when>
+			<c:otherwise>
+				<li class="dropdown"><a class="${rootMenus.icon }" href="${rootMenus.controller }">
+				<span class="menu-item">${rootMenus.name }</span></a>
+				<ul class="list-unstyled menu-item">
+					<c:forEach var="subMenus" items="${rootMenus.list }">
+						<li><a href="${subMenus.controller }">${subMenus.name }</a></li>
+					</c:forEach>
+				</ul>
+				</li>
+			</c:otherwise>
+		</c:choose>
+	</c:forEach>
+
+	<!-- <li class="active"><a class="sa-side-home" href="#">
 			<span class="menu-item">主页</span>
 	</a></li>
 	<li class="dropdown"><a class="sa-side-form" href="#"> <span
@@ -40,5 +61,5 @@
         <a class="sa-side-table" href="#">
             <span class="menu-item">数据统计</span>
    	 	</a>
-    </li>
+    </li> -->
 </ul>

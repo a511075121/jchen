@@ -30,6 +30,7 @@ public class _MappingKit {
 		arp.addMapping("i_offline_order", "id", OfflineOrder.class);
 		arp.addMapping("i_online_order", "id", OnlineOrder.class);
 		arp.addMapping("i_online_order_customer", "id", OnlineOrderCustomer.class);
+		arp.addMapping("i_sys_backgroud_img", "id", SysBackgroudImg.class);
 		arp.addMapping("i_sys_controller", "id", SysController.class);
 		arp.addMapping("i_sys_menu", "id", SysMenu.class);
 		arp.addMapping("i_sys_role_controller", "id", SysRoleController.class);

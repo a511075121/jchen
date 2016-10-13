@@ -10,7 +10,7 @@
 				class="icon right">&#61815;</i></li>
 			<li><a href="#">设置</a> <i class="icon left">&#61903;</i><i
 				class="icon right">&#61815;</i></li>
-			<li><a href="#">注销</a> <i class="icon left">&#61903;</i><i
+			<li><a href="/login/logout">注销</a> <i class="icon left">&#61903;</i><i
 				class="icon right">&#61815;</i></li>
 		</ul>
 		<h4 class="m-0">805222441</h4>

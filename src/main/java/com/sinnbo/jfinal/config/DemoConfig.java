@@ -1,7 +1,8 @@
 package com.sinnbo.jfinal.config;
 
 import java.util.List;
-import java.util.logging.Logger;
+
+import org.apache.log4j.Logger;
 
 import com.alibaba.druid.filter.stat.StatFilter;
 import com.alibaba.druid.util.JdbcConstants;
@@ -19,6 +20,7 @@ import com.jfinal.render.ViewType;
 import com.sinnbo.jfinal.common.enumwork.DataStatus;
 import com.sinnbo.jfinal.config.interceptor.MenuInterceptor;
 import com.sinnbo.jfinal.config.kissoplugin.KissoJfinalPlugin;
+import com.sinnbo.jfinal.config.xbus.cache.XbusPlugin;
 import com.sinnbo.jfinal.controller.LoginController;
 import com.sinnbo.jfinal.controller.WelcomeController;
 import com.sinnbo.jfinal.domain.BasicUser;
@@ -50,8 +52,11 @@ public class DemoConfig extends JFinalConfig {
   @Override
   public void configPlugin(Plugins me) {
     DruidPlugin druid = new DruidPlugin(PropKit.get("jdbc.url"), PropKit.get("jdbc.user"), PropKit.get("jdbc.pwd").trim());
+    boolean modelDev = PropKit.getBoolean("model.dev");
     // StatFilter提供JDBC层的统计信息
-    druid.addFilter(new StatFilter());
+    if (modelDev) {
+      druid.addFilter(new StatFilter());
+    }
     // WallFilter的功能是防御SQL注入攻击
     WallFilter wallDefault = new WallFilter();
     wallDefault.setDbType(JdbcConstants.MYSQL);
@@ -59,12 +64,14 @@ public class DemoConfig extends JFinalConfig {
     me.add(druid);
     
     ActiveRecordPlugin arp = new ActiveRecordPlugin("main", druid);
-    arp.setShowSql(true);
-    
+    if (modelDev) {
+      arp.setShowSql(true);
+    }
     me.add(arp);
     _MappingKit.mapping(arp);
     
     me.add(new KissoJfinalPlugin());
+    me.add(new XbusPlugin());
   }
 
   @Override

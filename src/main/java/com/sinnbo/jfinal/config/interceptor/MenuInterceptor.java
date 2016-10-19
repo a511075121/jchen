@@ -4,8 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 
 import com.baomidou.kisso.SSOHelper;
 import com.google.common.collect.Lists;
@@ -20,7 +19,7 @@ import com.sinnbo.jfinal.service.SysMenuService;
 import com.sinnbo.jfinal.util.StringUtils;
 
 public class MenuInterceptor implements Interceptor {
-  protected static final Logger logger = LoggerFactory.getLogger("MenuInteceptor");
+  protected static final Logger logger = Logger.getLogger("MenuInteceptor");
 
   // private LoadingCache<String, MenuAndParent> actionCache =
   // CacheBuilder.newBuilder().newBuilder()

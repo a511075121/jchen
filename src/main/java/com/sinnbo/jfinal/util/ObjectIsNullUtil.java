@@ -16,4 +16,11 @@ public class ObjectIsNullUtil {
       }
     }
   }
+  
+  public static boolean isNullOfBoolean(Object object) {
+    if (object == null) {
+      return true;
+    }
+    return false;
+  }
 }

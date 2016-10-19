@@ -16,6 +16,7 @@ import com.sinnbo.jfinal.domain.SysController;
 import com.sinnbo.jfinal.domain.SysMenu;
 import com.sinnbo.jfinal.service.SysControllerService;
 import com.sinnbo.jfinal.service.SysMenuService;
+import com.sinnbo.jfinal.util.ObjectIsNullUtil;
 import com.sinnbo.jfinal.util.StringUtils;
 
 public class MenuInterceptor implements Interceptor {
@@ -46,16 +47,16 @@ public class MenuInterceptor implements Interceptor {
   
       for (SysMenu menu : list) {
         Menu m = new Menu();
-        SysController controller =
-            SysControllerService.service.getByIdFromCache(String.valueOf(menu.getControllerId()));
-        m.setMenuId(menu.getId());
-        m.setName(menu.getMenuName());
-        if (!StringUtils.isEmpety(controller.getControllerKey())
-            && !StringUtils.isEmpety(controller.getControllerValue())) {
-          m.setController("/" + controller.getControllerKey() + "/" + controller.getControllerValue());
+        SysController controller = null;
+        if (!ObjectIsNullUtil.isNullOfBoolean(menu.getControllerId())) {
+           controller = SysControllerService.service.getByIdFromCache(String.valueOf(menu.getControllerId()));
+           m.setController("/" + controller.getControllerKey() + "/" + controller.getControllerValue());
         } else {
           m.setController("#");
         }
+        
+        m.setMenuId(menu.getId());
+        m.setName(menu.getMenuName());
         if (!StringUtils.isEmpety(menu.getIcon())) {
           m.setIcon(menu.getIcon());
         }
@@ -64,16 +65,15 @@ public class MenuInterceptor implements Interceptor {
           List<Menu> subMenu = Lists.newArrayList();
           for (SysMenu subM : subMenus) {
             Menu subm = new Menu();
-            SysController contr =
-                SysControllerService.service.getByIdFromCache(String.valueOf(subM.getControllerId()));
-            subm.setMenuId(subM.getId());
-            subm.setName(subM.getMenuName());
-            if (!StringUtils.isEmpety(contr.getControllerKey())
-                && !StringUtils.isEmpety(contr.getControllerValue())) {
+            SysController contr = null;
+            if (!ObjectIsNullUtil.isNullOfBoolean(subM.getControllerId())) {
+              contr = SysControllerService.service.getByIdFromCache(String.valueOf(subM.getControllerId()));
               subm.setController("/" + contr.getControllerKey() + "/" + contr.getControllerValue());
             } else {
               subm.setController("#");
             }
+            subm.setMenuId(subM.getId());
+            subm.setName(subM.getMenuName());
             if (!StringUtils.isEmpety(subM.getIcon())) {
               subm.setIcon(subM.getIcon());
             }
